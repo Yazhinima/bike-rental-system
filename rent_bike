@@ -56,7 +56,20 @@ class Rentalshop:
                 make_payment += (self.bike * (5 * self.hours))
                 return "Total bill of renting {} bike for {} hours is ${} only.".format(self.bike, self.hours, make_payment)
        
-
+        if self.bike > 3:
+            if self.hours and self.days and self.week:
+                make_payment += 0.3 * ((self.bike * (5 * self.hours)) + (self.bike * (20 * self.days)) + (self.bike * (60 * self.week)))
+                return "Total bill with 30% discount of renting {} bike for {} week, {} days and {} hours is ${} only.".format(self.bike, self.week, self.days, self.hours, make_payment)
+            elif self.hours and self.days:
+                make_payment += 0.3 * ((self.bike * (20 * self.days)) + (self.bike * (5 * self.hours)))
+                return "Total bill with 30% discount of renting {} bike for {} days and {} hours is ${} only.".format(self.bike, self.days, self.hours, make_payment)
+            elif self.week and self.hours:
+                make_payment += 0.3 * ((self.bike * (60 * self.week)) + (self.bike * (20 * self.hours)))
+                return "Total bill with 30% discount of renting {} bike for {} week and {} hours is ${} only.".format(self.bike, self.week, self.hours, make_payment)
+            elif self.hours:
+                make_payment += 0.3 * (self.bike * (5 * self.hours))
+                return "Total bill with 30% discount of renting {} bike for {} hours is ${} only.".format(self.bike, self.hours, make_payment)
+    
     
 
 user = Customer()
@@ -66,6 +79,7 @@ print(user.rent(5, 0, 0))
 print(user.groupRent(6, 10, 0, 0))
 print(user1.returnbike(2,6,2,1))
 print(user1.returnbike(2,2,0,0))
+print(user1.returnbike(5,10,0,0))
 
         
     
