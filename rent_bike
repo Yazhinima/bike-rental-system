@@ -1,0 +1,71 @@
+#bike rental system
+
+class Customer:
+    
+    def availableBikes(self):
+        bikes = list(range(1,11))
+        available_bikes = 0
+        for vehicle in bikes:
+            available_bikes += 1
+            
+        return "Total bikes available is {} \n".format(available_bikes) + " $5 per hour. \n $20 per day. \n $60 per week."
+    
+    #to rent a single bike for a hourly or days or week basis
+    def rent(self, hours, days, week):
+        self.hours = hours
+        self.days = days
+        self.week = week
+        
+        return "Renting bike for {} weeks, {} days, {} hours.".format(self.week, self.days, self.hours)
+    
+    #to rent 2 or more bikes for hourly or days or week basis    
+    def groupRent(self, bikes, hours, days, week):
+        self.bikes = bikes
+        self.hours = hours
+        self.days = days
+        self.week = week
+        
+        if self.bikes > 5:
+            print("Sorry, you can not rent more than 5 bikes.")
+        else:
+            return "You are renting {} bikes for {} week, {} days, {} hours.".format(self.bikes, self.week, self.days, self.hours)
+        return "Thank you"
+    
+class Rentalshop:
+    
+    def returnbike(self, bike, hours, days, week):
+        self.bike = bike
+        self.hours = hours
+        self.days = days
+        self.week = week
+        
+        rent_period = ""
+        make_payment = 0
+        
+        if self.bike < 3:
+            if self.hours and self.days and self.week:
+                make_payment += ((self.bike * (5 * self.hours)) + (self.bike * (20 * self.days)) + (self.bike * (60 * self.week)))
+                return "Total bill of renting {} bike for {} week, {} days and {} hours is ${} only.".format(self.bike, self.week, self.days, self.hours, make_payment)
+            elif self.hours and self.days:
+                make_payment += ((self.bike * (20 * self.days)) + (self.bike * (5 * self.hours)))
+                return "Total bill of renting {} bike for {} days and {} hours is ${} only.".format(self.bike, self.days, self.hours, make_payment)
+            elif self.week and self.hours:
+                make_payment += ((self.bike * (60 * self.week)) + (self.bike * (20 * self.hours)))
+                return "Total bill of renting {} bike for {} week and {} hours is ${} only.".format(self.bike, self.week, self.hours, make_payment)
+            elif self.hours:
+                make_payment += (self.bike * (5 * self.hours))
+                return "Total bill of renting {} bike for {} hours is ${} only.".format(self.bike, self.hours, make_payment)
+       
+
+    
+
+user = Customer()
+user1 = Rentalshop()
+print(user.availableBikes())
+print(user.rent(5, 0, 0))
+print(user.groupRent(6, 10, 0, 0))
+print(user1.returnbike(2,6,2,1))
+print(user1.returnbike(2,2,0,0))
+
+        
+    
