@@ -42,6 +42,9 @@ class Rentalshop:
         rent_period = ""
         make_payment = 0
         
+        if self.bike > 5:
+            return "Please enter the correct bike count. You can not rent more than 5 bikes with single user."
+        
         if self.bike < 3:
             if self.hours and self.days and self.week:
                 make_payment += ((self.bike * (5 * self.hours)) + (self.bike * (20 * self.days)) + (self.bike * (60 * self.week)))
